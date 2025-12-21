@@ -7,6 +7,8 @@ public class PlayerHealth : MonoBehaviour
     public int HP;
 
     [SerializeField] private Slider healthBar;
+    [SerializeField] private GameObject gameOverPanel;
+
 
     void Start()
     {
@@ -26,8 +28,12 @@ public class PlayerHealth : MonoBehaviour
 
         if (HP <= 0)
         {
+            HP = 0;
             Debug.Log("Player lost!");
+
+            gameOverPanel.SetActive(true);
             Time.timeScale = 0f;
         }
+
     }
 }
