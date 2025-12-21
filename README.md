@@ -53,6 +53,84 @@
 
   <hr>
 
+  <h1>אינטראקציה עם חפצים ודמויות</h1>
+  <p><strong>"מערכת אינטראקציה פשוטה: חפצים מגיבים כשהשחקן מתקרב"</strong></p>
+
+  <p>
+    בחלק זה הוספנו לשחקן אפשרות לאינטראקציה עם אלמנטים בסביבה באמצעות מנגנון
+    <strong>Trigger Colliders</strong> (קרבה לאובייקט). הדגש היה על פתרון יציב וברור:
+    כאשר השחקן נכנס לאזור אינטראקציה, מתבצעת פעולה ויזואלית (פתיחה/הדלקה/הצגת טקסט).
+  </p>
+
+  <ul>
+    <li><strong>תיבה (Chest)</strong>:
+      <ul>
+        <li>נבנתה תיבה עם מכסה נפרד (Lid) ב־ProBuilder.</li>
+        <li>בכניסה ל־Trigger התיבה נפתחת באמצעות <strong>סיבוב מכסה</strong> סביב Pivot שהוגדר מראש.</li>
+        <li>הפעולה כוללת אנימציה חלקה (Interpolation) כדי להמחיש פתיחה טבעית.</li>
+      </ul>
+    </li>
+    <li><strong>מנורה (Light)</strong>:
+      <ul>
+        <li>נוספה מנורה/אור בחדר.</li>
+        <li>כאשר השחקן מתקרב לאזור המנורה, היא נדלקת/נכבית (Toggle) באופן מיידי וברור לעין.</li>
+      </ul>
+    </li>
+    <li><strong>אח עם אש (Fireplace)</strong>:
+      <ul>
+        <li>נוסף אפקט אש/ניצוצות (Particle System) לאח.</li>
+        <li>הפעלת/כיבוי האש נעשית באותה שיטה של Trigger, כך שהשחקן יכול “להדליק” או “לכבות” את האח.</li>
+      </ul>
+    </li>
+    <li><strong>שיחה עם דמות NPC</strong>:
+      <ul>
+        <li>הוספנו דמות NPC שעומדת ליד האח.</li>
+        <li>כאשר השחקן מתקרב, מופיעה <strong>בועת טקסט</strong> מעל ה־NPC באמצעות Canvas במצב <strong>World Space</strong>.</li>
+        <li>הטקסט תמיד פונה לכיוון המצלמה (Billboard), וכאשר השחקן מתרחק – הטקסט נעלם.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <hr>
+
+  <h1>ירי אויב, פגיעה וחיים לשחקן</h1>
+  <p><strong>"אויב שיורה באמצעות Raycast + מערכת חיים + Game Over"</strong></p>
+
+  <p>
+    בחלק זה הוספנו אויב עם נשק שמבצע ירי לעבר השחקן. הירי מבוסס על <strong>Raycast</strong>:
+    כך שהפגיעה נקבעת לפי העצם הראשון שנפגע בקו הירי. בנוסף הוספנו לשחקן מערכת חיים (HP)
+    ותצוגת חיים קבועה (HUD). כאשר החיים מגיעים ל־0 מוצג מסך <strong>Game Over</strong> והמשחק נעצר.
+  </p>
+
+  <ul>
+    <li><strong>ירי אויב (Raycast)</strong>:
+      <ul>
+        <li>נוצר <strong>FirePoint</strong> לאויב שממנו יוצא הירי.</li>
+        <li>ה־Raycast משתמש ב־<strong>LayerMask</strong> כך שהירייה <strong>נחסמת ע"י קירות וחפצים עם Collider</strong>.</li>
+        <li>הוספנו תצוגת ירי באמצעות <strong>LineRenderer</strong> (Tracer) כדי לראות את מסלול הירייה בזמן אמת.</li>
+      </ul>
+    </li>
+    <li><strong>מערכת חיים לשחקן</strong>:
+      <ul>
+        <li>נוצר Script לשחקן המנהל <strong>HP</strong> ומאפשר הורדת חיים בעת פגיעה.</li>
+        <li>בעת פגיעה מוצג Log ב־Console כדי לוודא שהמערכת עובדת (פגיעה + HP מעודכן).</li>
+      </ul>
+    </li>
+    <li><strong>תצוגת חיים קבועה (HUD)</strong>:
+      <ul>
+        <li>הוספנו Slider על ה־Canvas שמציג את מצב החיים באופן קבוע.</li>
+        <li>צבע הפס משתנה לפי מצב החיים: <strong>ירוק</strong> בחיים מלאים, ומתקרב ל־<strong>אפור</strong> ככל שהחיים יורדים.</li>
+      </ul>
+    </li>
+    <li><strong>Game Over</strong>:
+      <ul>
+        <li>כאשר HP מגיע ל־0, מופיע פאנל GameOver על המסך.</li>
+        <li>לאחר הצגת GameOver המשחק נעצר באמצעות <strong>Time.timeScale = 0</strong>.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <hr>
 
 </div>
 
