@@ -52,7 +52,7 @@ public class EnemyShooter : MonoBehaviour
         if (hitSomething)
         {
             var hp = hit.collider.GetComponentInParent<PlayerHealth>();
-            
+
             if (hp != null)
                 hp.TakeDamage(damage);
         }
